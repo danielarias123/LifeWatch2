@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="wait_times">
+        <item>10 s</item>
+        <item>15 s</item>
+        <item>30 s</item>
+        <item>60 s</item>
+
+    </string-array>
+
+
+</resources>

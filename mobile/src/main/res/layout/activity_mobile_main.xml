@@ -1,0 +1,141 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"  android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/alice_blue"
+    tools:context=".MobileMainActivity">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-thin"
+
+
+        android:text="@string/app_name"
+        android:textColor="@color/boston_university_red"
+        android:textSize="60sp"
+
+
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+
+        android:autoText="false"
+        android:elegantTextHeight="@bool/abc_action_bar_embed_tabs_pre_jb"
+
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Emergency"
+        android:fontFamily="sans-serif-condensed"
+        android:id="@+id/emergButton"
+        android:textColor="@color/alice_blue"
+        android:textSize="25sp"
+        android:background="@color/boston_university_red"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/titleTextView"
+        android:layout_alignRight="@+id/titleTextView"
+        android:layout_alignEnd="@+id/titleTextView" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Contacts"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/alice_blue"
+        android:textSize="25sp"
+        android:id="@+id/contactsButton"
+        android:background="@color/gray"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/emergButton"
+        android:layout_alignLeft="@+id/emergButton"
+        android:layout_alignStart="@+id/emergButton" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Medication"
+        android:textColor="@color/alice_blue"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-condensed"
+        android:id="@+id/medButton"
+        android:layout_below="@+id/contactsButton"
+        android:layout_alignLeft="@+id/contactsButton"
+        android:layout_alignStart="@+id/contactsButton"
+        android:background="@color/gray"
+        android:layout_marginTop="40dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ambImageView"
+
+        android:layout_above="@+id/contactsButton"
+        android:src="@drawable/ambulance_icon"
+        android:layout_alignTop="@+id/emergButton"
+        android:layout_toLeftOf="@+id/emergButton"
+        android:layout_alignLeft="@+id/titleTextView"
+        android:layout_alignStart="@+id/titleTextView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settImageView"
+        android:src="@drawable/settings"
+        android:layout_alignBottom="@+id/settingsButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/settingsButton"
+        android:layout_alignRight="@+id/settingsImageView"
+        android:layout_alignEnd="@+id/settingsImageView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingsImageView"
+        android:src="@drawable/contacts"
+        android:layout_alignTop="@+id/contactsButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_above="@+id/medButton"
+        android:layout_alignRight="@+id/ambImageView"
+        android:layout_alignEnd="@+id/ambImageView" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Settings"
+        android:textColor="@color/alice_blue"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-condensed"
+        android:background="@color/gray"
+        android:id="@+id/settingsButton"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/medButton"
+        android:layout_alignLeft="@+id/medButton"
+        android:layout_alignStart="@+id/medButton" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/medImageView"
+        android:layout_alignBottom="@+id/medButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/pills_bottle_icon"
+        android:layout_alignTop="@+id/medButton"
+        android:layout_alignRight="@+id/settImageView"
+        android:layout_alignEnd="@+id/settImageView" />
+
+
+</RelativeLayout>

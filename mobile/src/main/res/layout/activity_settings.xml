@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/alice_blue"
+    tools:context="com.example.danarias.lifewatch2.SettingsActivity">
+
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tablerow1"
+            android:background="#bfd0ffed"
+            android:baselineAligned="false">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Default Wait Time"
+                android:fontFamily="sans-serif-condensed"
+                android:id="@+id/setWaitTextView"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:layout_gravity="center_vertical" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/waitTimeSpinner"
+                android:entries="@array/wait_times"
+                android:layout_column="2"
+                android:layout_marginLeft="45dp"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="@color/boston_university_red" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:id="@+id/tablerow2"
+            android:layout_marginTop="20dp"
+            android:background="#bfd0ffed">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="SmartWatch Features "
+                android:fontFamily="sans-serif-condensed"
+                android:id="@+id/setWatchTextView"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:layout_gravity="center" />
+
+        </TableRow>
+
+
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:layout_marginTop="20dp"
+                android:background="@color/gray"
+                android:textColor="@color/alice_blue"
+                android:fontFamily="sans-serif-condensed"
+                android:id="@+id/backButton"
+                android:layout_column="0"
+                android:textSize="35dp" />
+        </TableRow>
+    </TableLayout>
+
+
+</RelativeLayout>
