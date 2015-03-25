@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.Toast;
+import android.telephony.SmsManager;
 
 
 public class EmergActivity extends ActionBarActivity implements OnClickListener{
@@ -23,9 +25,9 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
     TextView countdown;
     private static final String FORMAT = "%02d";
     String setTime = SettingsActivity.waitTime;
+
+
     long seconds = 11000;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,17 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
         callNowButton = (Button) findViewById(R.id.contactNowButton);
         callNowButton.setOnClickListener(this);
 
-        if(setTime.equals("15 s")){
+
+
+
+
+
+
+
+
+
+
+       /* if(setTime.contains("15 s")){
             seconds = 16000;
         }
 
@@ -48,7 +60,7 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
         if(setTime.equals("60 s")){
             seconds = 61000;
         }
-
+*/
         countdown=(TextView)findViewById(R.id.countdownTextView);
 
 
@@ -65,6 +77,20 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
 
             public void onFinish() {
                 countdown.setText("CALLING");
+                String textPhoneNo = "6139700262";
+                String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
+
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(textPhoneNo, null, textSMS, null, null);
+                    Toast.makeText(getApplicationContext(), "Emergency SMS Sent!",
+                            Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),
+                            "SMS failed, please try again later!",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
             }
         }.start();
 
@@ -89,7 +115,7 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
                 // Intent i = new Intent(MobileMainActivity.this, ContactsActivity.class);
                 // startActivity(i);
                 // finish();
-                //  break;
+                break;
 
                 //     case R.id.settingsButton:
         }

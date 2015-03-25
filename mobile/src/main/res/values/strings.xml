@@ -9,5 +9,8 @@
     <string name="settings_button">Settings</string>
     <string name="title_activity_emerg">EmergActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_contacts">ContactsActivity</string>
+    <string name="title_activity_create_contact">createContactActivity</string>
+    <string name="title_activity_contact_info">ContactInfoActivity</string>
 
 </resources>

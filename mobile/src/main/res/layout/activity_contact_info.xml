@@ -1,0 +1,141 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.danarias.lifewatch2.ContactInfoActivity">
+
+    <ImageView
+        android:layout_width="71dp"
+        android:layout_height="74dp"
+        android:id="@+id/contactsImageView"
+        android:src="@drawable/contacts"
+        android:layout_marginTop="30dp"
+
+        />
+
+    <TextView
+        android:id="@+id/contactInfoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="ContactName"
+
+        android:textSize="40sp"
+        android:autoText="false"
+        android:elegantTextHeight="@bool/abc_action_bar_embed_tabs_pre_jb"
+        android:layout_alignBottom="@+id/contactsImageView"
+        android:layout_alignTop="@+id/contactsImageView"
+        android:layout_toRightOf="@+id/contactsImageView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Phone Number"
+        android:id="@+id/phone1TextView"
+        android:layout_below="@+id/contactsImageView"
+
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Phone Number"
+        android:id="@+id/phoneTextView"
+        android:layout_below="@+id/phone1TextView"
+        android:fontFamily="sans-serif-thin"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email"
+        android:id="@+id/email1TextView"
+        android:layout_below="@+id/phoneTextView"
+
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email"
+        android:id="@+id/emailTextView"
+        android:layout_below="@+id/email1TextView"
+        android:fontFamily="sans-serif-thin"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Back"
+        android:id="@+id/backtocontacts2Button"
+
+        android:textColor="@color/alice_blue"
+        android:background="@color/gray"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-thin"
+        android:layout_below="@+id/onOffRadioGroup"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=" Contact if Emergency?"
+        android:textSize="20sp"
+
+        android:id="@+id/ifContactTextView"
+        android:layout_below="@+id/emailTextView"
+        android:background="@color/boston_university_red"
+        android:textColor="@color/alice_blue"
+        android:layout_centerHorizontal="true"
+
+        android:fontFamily="sans-serif-thin"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal" />
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ifContactTextView"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/onOffRadioGroup">
+        <RadioButton android:id="@+id/onRadioButton"
+            android:fontFamily="sans-serif-thin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="yes"
+            />
+        <RadioButton android:id="@+id/offRadioButton"
+
+            android:fontFamily="sans-serif-thin"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="no"
+           />
+    </RadioGroup>
+
+
+</RelativeLayout>

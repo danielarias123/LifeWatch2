@@ -54,7 +54,11 @@ public class MobileMainActivity extends ActionBarActivity implements OnClickList
                 finish();
                 break;
 
-       //     case R.id.settingsButton:
+            case R.id.contactsButton:
+                Intent intent2 = new Intent(MobileMainActivity.this, ContactsActivity.class);
+                startActivity(intent2);
+                finish();
+                break;
        }
     }
 

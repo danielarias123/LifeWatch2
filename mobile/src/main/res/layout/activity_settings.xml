@@ -7,16 +7,39 @@
     android:background="@color/alice_blue"
     tools:context="com.example.danarias.lifewatch2.SettingsActivity">
 
+    <ImageView
+        android:layout_width="71dp"
+        android:layout_height="74dp"
+        android:id="@+id/settingsImageView"
+        android:src="@drawable/settings"
+        />
+
+    <TextView
+        android:id="@+id/settingsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Settings"
+        android:layout_toRightOf="@+id/settingsImageView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/boston_university_red"
+        android:textSize="50sp"
+        android:autoText="false"
+        android:elegantTextHeight="@bool/abc_action_bar_embed_tabs_pre_jb"
+        android:layout_alignTop="@+id/settingsImageView"
+         />
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingsTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="30dp"
+        android:id="@+id/settingsTable">
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/tablerow1"
@@ -28,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="Default Wait Time"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="sans-serif-thin"
                 android:id="@+id/setWaitTextView"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
@@ -40,50 +63,46 @@
                 android:id="@+id/waitTimeSpinner"
                 android:entries="@array/wait_times"
                 android:layout_column="2"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="30dp"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="@color/boston_university_red" />
         </TableRow>
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:id="@+id/tablerow2"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="#bfd0ffed">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="SmartWatch Features "
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="sans-serif-thin"
                 android:id="@+id/setWatchTextView"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
+
                 android:layout_gravity="center" />
 
         </TableRow>
 
 
 
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Back"
-                android:layout_marginTop="20dp"
-                android:background="@color/gray"
-                android:textColor="@color/alice_blue"
-                android:fontFamily="sans-serif-condensed"
-                android:id="@+id/backButton"
-                android:layout_column="0"
-                android:textSize="35dp" />
-        </TableRow>
     </TableLayout>
 
+    <Button
 
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Back"
+        android:layout_marginTop="30dp"
+        android:background="@color/gray"
+        android:textColor="@color/alice_blue"
+        android:fontFamily="sans-serif-thin"
+        android:id="@+id/backButton"
+        android:layout_below="@+id/settingsTable"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp" />
 </RelativeLayout>
