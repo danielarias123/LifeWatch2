@@ -47,18 +47,6 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
          String contemail = mydatabase.getEmail(position + 1);
         final String ifEmergContact = mydatabase.getIfEmergContact(position+1).toString();
 
-
-
-
-
-
-
-
-
-
-
-
-
         TextView nameTextView = (TextView) findViewById(R.id.contactInfoTextView);
         nameTextView.setText(contname);
 
@@ -67,7 +55,6 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
 
         TextView emailTextView = (TextView) findViewById(R.id.emailTextView);
         emailTextView.setText(contemail);
-
 
         backtocontacts2Button = (Button) findViewById(R.id.backtocontacts2Button);
         backtocontacts2Button.setOnClickListener(this);

@@ -17,8 +17,9 @@ import android.util.Log;
 public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "lifewatch.db";
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 15;
     public static final String CONTACTS_TABLE_NAME = "Contacts";
+    public static final String MEDICATION_TABLE_NAME = "Medication";
 
     public static final String USER_ID = "_id";
     public static final String NAME_CONTACT = "name";
@@ -26,12 +27,25 @@ public class DbHelper extends SQLiteOpenHelper{
     public static final String EMAIL_CONTACT = "email";
     public static final String IF_EMERG_CONTACT = "ifEmergContact";
 
+    public static final String MED_ID = "med_id";
+    public static final String NAME_MED = "medname";
+    public static final String QUANT_MED = "medquantity";
+    public static final String NOTES_MED = "mednotes";
+    public static final String INTERVAL_WEEK = "medweek";
+    public static final String INTERVAL_DAY = "medday";
+    public static final String INTERVAL_HOUR = "medhour";
+
     public static final String[] ALL_KEYS = new String[] {USER_ID, NAME_CONTACT, PHONE_CONTACT, EMAIL_CONTACT, IF_EMERG_CONTACT};
 
     private static final String LIFEWATCH_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + CONTACTS_TABLE_NAME + "(" +USER_ID
                     +" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                     NAME_CONTACT + " TEXT NOT NULL, "+PHONE_CONTACT+ " TEXT NOT NULL, "+EMAIL_CONTACT+ " TEXT, "+ IF_EMERG_CONTACT+" TEXT);";
+
+    private static final String MEDICATION_TABLE_CREATE =
+            "CREATE TABLE IF NOT EXISTS " + MEDICATION_TABLE_NAME + "(" +MED_ID
+                    +" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                    NAME_MED + " TEXT NOT NULL, "+QUANT_MED+ " TEXT NOT NULL, "+NOTES_MED+ " TEXT, "+INTERVAL_WEEK+ " TEXT NOT NULL, "+INTERVAL_DAY+ " TEXT NOT NULL, "+INTERVAL_HOUR+ " TEXT NOT NULL);";
 
     private SQLiteDatabase db;
 
@@ -51,6 +65,8 @@ public class DbHelper extends SQLiteOpenHelper{
         try{
             //Create Database
             db.execSQL(LIFEWATCH_TABLE_CREATE);
+
+            db.execSQL(MEDICATION_TABLE_CREATE);
 
 
             System.out.println("In onCreate");
@@ -84,6 +100,32 @@ public class DbHelper extends SQLiteOpenHelper{
 
 
         return contacts;
+    }
+
+    public List<String> getAllMedication(){
+        List<String> medication = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + MEDICATION_TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                medication.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        db.close();
+
+
+        return medication;
     }
 
     public String getName(Integer contact_id){
@@ -160,6 +202,115 @@ public class DbHelper extends SQLiteOpenHelper{
         int iEmergContact = c.getColumnIndex(IF_EMERG_CONTACT);
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
             result = c.getString(iEmergContact)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+
+    public String getMedName(Integer med_id){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_MED, QUANT_MED, NOTES_MED, INTERVAL_WEEK, INTERVAL_DAY, INTERVAL_HOUR};
+        String clause = MED_ID +" = '"+med_id+"'";
+        Cursor c = mydb.query(MEDICATION_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="";
+
+        int imedname = c.getColumnIndex(NAME_MED);
+
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(imedname)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+    public String getMedQuantity(Integer med_id){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_MED, QUANT_MED, NOTES_MED, INTERVAL_WEEK, INTERVAL_DAY, INTERVAL_HOUR};
+        String clause = MED_ID +" = '"+med_id+"'";
+        Cursor c = mydb.query(MEDICATION_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="";
+
+        int imedquant = c.getColumnIndex(QUANT_MED);
+
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(imedquant)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+    public String getMedNotes(Integer med_id){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_MED, QUANT_MED, NOTES_MED, INTERVAL_WEEK, INTERVAL_DAY, INTERVAL_HOUR};
+        String clause = MED_ID +" = '"+med_id+"'";
+        Cursor c = mydb.query(MEDICATION_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="";
+
+        int imednotes = c.getColumnIndex(NOTES_MED);
+
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(imednotes)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+    public String getIntervalWeek(Integer med_id){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_MED, QUANT_MED, NOTES_MED, INTERVAL_WEEK, INTERVAL_DAY, INTERVAL_HOUR};
+        String clause = MED_ID +" = '"+med_id+"'";
+        Cursor c = mydb.query(MEDICATION_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="";
+
+        int intervalweek = c.getColumnIndex(INTERVAL_WEEK);
+
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(intervalweek)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+    public String getIntervalDay(Integer med_id){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_MED, QUANT_MED, NOTES_MED, INTERVAL_WEEK, INTERVAL_DAY, INTERVAL_HOUR};
+        String clause = MED_ID +" = '"+med_id+"'";
+        Cursor c = mydb.query(MEDICATION_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="";
+
+        int intervalday = c.getColumnIndex(INTERVAL_DAY);
+
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(intervalday)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+    public String getIntervalHour(Integer med_id){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_MED, QUANT_MED, NOTES_MED, INTERVAL_WEEK, INTERVAL_DAY, INTERVAL_HOUR};
+        String clause = MED_ID +" = '"+med_id+"'";
+        Cursor c = mydb.query(MEDICATION_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="";
+
+        int intervalhour = c.getColumnIndex(INTERVAL_HOUR);
+
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(intervalhour)+"\n";
         }
 
         mydb.close();

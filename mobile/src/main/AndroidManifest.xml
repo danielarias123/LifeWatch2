@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.danarias.lifewatch2" >
 
-
     <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
@@ -38,6 +37,18 @@
         <activity
             android:name=".ContactInfoActivity"
             android:label="@string/title_activity_contact_info" >
+        </activity>
+        <activity
+            android:name=".MedReminderActivity"
+            android:label="@string/title_activity_med_reminder" >
+        </activity>
+        <activity
+            android:name=".createMedActivity"
+            android:label="@string/title_activity_create_med" >
+        </activity>
+        <activity
+            android:name=".MedInfoActivity"
+            android:label="@string/title_activity_med_info" >
         </activity>
     </application>
 

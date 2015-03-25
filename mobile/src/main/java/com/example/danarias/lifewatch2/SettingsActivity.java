@@ -26,6 +26,7 @@ public class SettingsActivity extends ActionBarActivity implements OnClickListen
 
 
 
+
     public static String waitTime;
 
     @Override
@@ -36,7 +37,11 @@ public class SettingsActivity extends ActionBarActivity implements OnClickListen
         backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
-        final Spinner waitTimeSpinner = (Spinner) findViewById((R.id.waitTimeSpinner));
+        final CheckBox smartWatchFeatcheckBox = (CheckBox) findViewById(R.id.SmartWatchFeaturesCheckBox);
+        if (smartWatchFeatcheckBox.isChecked()) {
+            smartWatchFeatcheckBox.setChecked(false);
+        }
+        Spinner waitTimeSpinner = (Spinner) findViewById((R.id.waitTimeSpinner));
         ArrayAdapter<CharSequence> waitTimeAdapter = ArrayAdapter.createFromResource(this,R.array.wait_times,R.layout.spinner_layout);
         waitTimeAdapter.setDropDownViewResource(R.layout.spinner_layout);
         waitTimeSpinner.setAdapter(waitTimeAdapter);

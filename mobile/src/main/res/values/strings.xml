@@ -12,5 +12,8 @@
     <string name="title_activity_contacts">ContactsActivity</string>
     <string name="title_activity_create_contact">createContactActivity</string>
     <string name="title_activity_contact_info">ContactInfoActivity</string>
+    <string name="title_activity_med_reminder">MedReminderActivity</string>
+    <string name="title_activity_create_med">createMedActivity</string>
+    <string name="title_activity_med_info">MedInfoActivity</string>
 
 </resources>

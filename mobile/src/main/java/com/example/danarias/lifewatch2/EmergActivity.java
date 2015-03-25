@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.telephony.SmsManager;
 
 
+
 public class EmergActivity extends ActionBarActivity implements OnClickListener{
 
     Button cancEmergButton;
@@ -24,7 +25,7 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
 
     TextView countdown;
     private static final String FORMAT = "%02d";
-    String setTime = SettingsActivity.waitTime;
+    public String setTime = SettingsActivity.waitTime;
 
 
     long seconds = 11000;
@@ -39,17 +40,9 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
         callNowButton = (Button) findViewById(R.id.contactNowButton);
         callNowButton.setOnClickListener(this);
 
+        countdown=(TextView)findViewById(R.id.countdownTextView);
 
-
-
-
-
-
-
-
-
-
-       /* if(setTime.contains("15 s")){
+       /* if(setTime.equals("15 s")){
             seconds = 16000;
         }
 
@@ -60,10 +53,7 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
         if(setTime.equals("60 s")){
             seconds = 61000;
         }
-*/
-        countdown=(TextView)findViewById(R.id.countdownTextView);
-
-
+    */
 
         new CountDownTimer(seconds,100){
 
@@ -77,7 +67,7 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
 
             public void onFinish() {
                 countdown.setText("CALLING");
-                String textPhoneNo = "6139700262";
+                String textPhoneNo = "9053997017";
                 String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
 
                 try {

@@ -35,6 +35,8 @@ public class MobileMainActivity extends ActionBarActivity implements OnClickList
         settingsButton = (Button) findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(this);
 
+
+
     }
 
     public void onClick(View v) {
@@ -57,6 +59,12 @@ public class MobileMainActivity extends ActionBarActivity implements OnClickList
             case R.id.contactsButton:
                 Intent intent2 = new Intent(MobileMainActivity.this, ContactsActivity.class);
                 startActivity(intent2);
+                finish();
+                break;
+
+            case R.id.medButton:
+                Intent intent3 = new Intent(MobileMainActivity.this, MedReminderActivity.class);
+                startActivity(intent3);
                 finish();
                 break;
        }

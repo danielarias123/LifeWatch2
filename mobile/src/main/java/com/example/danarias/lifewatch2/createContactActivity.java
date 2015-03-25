@@ -41,12 +41,6 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
         backtocontactsButton = (Button) findViewById(R.id.backtocontactsButton);
         backtocontactsButton.setOnClickListener(this);
 
-
-
-
-
-
-
     }
 
     public void onClick(View v) {
