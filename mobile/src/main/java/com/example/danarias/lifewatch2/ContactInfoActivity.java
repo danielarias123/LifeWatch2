@@ -133,6 +133,14 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(ContactInfoActivity.this, ContactsActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long

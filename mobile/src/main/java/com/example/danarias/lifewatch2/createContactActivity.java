@@ -16,11 +16,15 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 
+
 public class createContactActivity extends ActionBarActivity implements OnClickListener{
 
     EditText contactName;
     EditText contactNumber;
     EditText contactEmail;
+
+
+
 
     Button saveContactButton;
     Button backtocontactsButton;
@@ -35,11 +39,17 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
 
 
 
+
+
         saveContactButton = (Button) findViewById(R.id.saveContactButton);
         saveContactButton.setOnClickListener(this);
 
+
+
         backtocontactsButton = (Button) findViewById(R.id.backtocontactsButton);
         backtocontactsButton.setOnClickListener(this);
+
+
 
     }
 
@@ -55,7 +65,7 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
                 String name = contactName.getText().toString();
                 String phone = contactNumber.getText().toString();
                 String email = contactEmail.getText().toString();
-                Toast.makeText(getApplicationContext(),"Contact Created",Toast.LENGTH_SHORT).show();
+
 
                 boolean invalid = false;
                 if (name.equals("")){
@@ -69,7 +79,7 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
 
 
                     addEntry(name, phone, email);
-
+                    Toast.makeText(getApplicationContext(),"Contact Created",Toast.LENGTH_SHORT).show();
                     Intent i_register = new Intent(createContactActivity.this, ContactsActivity.class);
                     startActivity(i_register);
                     finish();
@@ -86,6 +96,36 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
 
         }
     }
+
+
+    public class TextListener implements TextWatcher{
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            // TODO Auto-generated method stub
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+            // TODO Auto-generated method stub
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            // TODO Auto-generated method stub
+            if(contactName.getText().length()==0 | contactNumber.getText().length()==0){
+                saveContactButton.setEnabled(false);
+
+            }
+            else if(contactName.getText().length()>0 & contactNumber.getText().length()>0){
+                saveContactButton.setEnabled(true);
+
+            }
+        }
+    }
+
 
     public void addEntry(String name, String phone, String email){
 
@@ -113,6 +153,14 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_create_contact, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(createContactActivity.this, ContactsActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

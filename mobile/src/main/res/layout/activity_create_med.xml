@@ -20,7 +20,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="New Medication"
         android:textColor="@color/boston_university_red"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:autoText="false"
         android:elegantTextHeight="@bool/abc_action_bar_embed_tabs_pre_jb"
         android:layout_alignBottom="@+id/medImageView"
@@ -29,18 +29,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/medImageView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
 
-
-        android:layout_marginTop="30dp"
-        android:id="@+id/linearLayout">
 
 
         <EditText
@@ -48,36 +37,62 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:textSize="25sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/medImageView"
             android:fontFamily="sans-serif-thin"
             android:ems="10"
             android:id="@+id/mednameEditText"
             android:hint="Medication Name" />
 
         <EditText
-            android:layout_width="fill_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/medquantityEditText"
             android:fontFamily="sans-serif-thin"
+            android:layout_below="@+id/mednameEditText"
             android:textSize="25sp"
             android:hint="Quantity"
             android:inputType="text" />
+        <EditText
+            android:fontFamily="sans-serif-thin"
+            android:background="#bfd0ffed"
+            android:layout_width="200dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:inputType="textMultiLine"
+            android:layout_alignBottom="@+id/medquantityEditText"
+            android:layout_alignTop="@+id/medquantityEditText"
+            android:layout_toRightOf="@+id/medquantityEditText"
+
+            android:gravity="center"
+
+            android:id="@+id/medNotesEditText"
 
 
 
-    </LinearLayout>
+            android:hint="Notes"
+            android:textSize="20sp"/>
+
+
+
+
 
 
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/medquantityEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
+        android:stretchColumns="0,1,2"
         android:id="@+id/intervaltimeTable">
+
+
+
 
         <TableRow
             android:layout_width="fill_parent"
@@ -85,32 +100,6 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/tablerow1"
-            android:layout_marginBottom="20dp"
-            android:baselineAligned="false"
-            android:gravity="center">
-        <EditText
-            android:fontFamily="sans-serif-thin"
-            android:background="#bfd0ffed"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:inputType="textMultiLine"
-
-            android:gravity="center"
-
-            android:id="@+id/medNotesEditText"
-            android:layout_below="@+id/intervaltimeTable"
-
-
-            android:hint="Notes"
-            android:textSize="20sp"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/tablerow2"
 
             android:baselineAligned="false"
             android:gravity="center">
@@ -122,7 +111,7 @@
                 android:fontFamily="sans-serif-thin"
 
                 android:id="@+id/rem_intervalTextView"
-                android:textColor="@android:color/black"
+                android:textColor="@color/boston_university_red"
                 android:textSize="25sp"
                 android:gravity="center"
                 />
@@ -132,45 +121,40 @@
          </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:id="@+id/tablerow3"
+            android:id="@+id/tablerow2"
+            android:layout_margin="2dp"
 
-            android:baselineAligned="true"
+            android:baselineAligned="false"
             android:gravity="center">
 
 
-
-            <EditText
-                android:layout_width="wrap_content"
+            <NumberPicker
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:id="@+id/weekPicker"
+                android:layout_column="0"
+                android:layout_weight="1"
+                />
 
-                android:id="@+id/weekEditText"
-
-                android:hint="Weeks"
-                 />
-            <EditText
-                android:layout_width="wrap_content"
+            <NumberPicker
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:id="@+id/dayPicker"
+                android:gravity="center"
+                android:layout_weight="1"/>
 
-                android:id="@+id/dayEditText"
-
-                android:hint="Days" />
-
-            <EditText
-                android:layout_width="wrap_content"
+            <NumberPicker
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:id="@+id/hourEditText"
-
-                android:hint="Hours"
-
-                 />
+                android:id="@+id/hourPicker"
+                android:gravity="right"
+                android:layout_weight="1"/>
         </TableRow>
+
 
 
     </TableLayout>

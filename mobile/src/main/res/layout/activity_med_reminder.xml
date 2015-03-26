@@ -20,7 +20,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="Medication"
         android:textColor="@color/boston_university_red"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:autoText="false"
         android:elegantTextHeight="@bool/abc_action_bar_embed_tabs_pre_jb"
         android:layout_alignBottom="@+id/medImageView"

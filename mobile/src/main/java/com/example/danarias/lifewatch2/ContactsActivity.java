@@ -99,13 +99,14 @@ public class ContactsActivity extends ActionBarActivity implements OnClickListen
 
         }
     }
-
+    @Override
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
 
         Intent intent = new Intent(ContactsActivity.this, ContactInfoActivity.class);
+        intent.putExtra("position", position);
         startActivity(intent);
         finish();
-        startActivity(intent);
+        ;
     }
 
 
@@ -115,6 +116,14 @@ public class ContactsActivity extends ActionBarActivity implements OnClickListen
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_contacts, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(ContactsActivity.this, MobileMainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

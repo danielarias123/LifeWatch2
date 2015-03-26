@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.NumberPicker;
+import android.widget.NumberPicker.OnValueChangeListener;
 
 
 public class createMedActivity extends ActionBarActivity implements OnClickListener {
@@ -24,6 +26,12 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
     EditText intervalWeek;
     EditText intervalDay;
     EditText intervalHour;
+    NumberPicker weekPicker;
+    NumberPicker dayPicker;
+    NumberPicker hourPicker;
+    Integer week;
+
+
 
     Button saveMedicationButton;
     Button backtoMedicationButton;
@@ -35,11 +43,32 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_med);
 
+        weekPicker = (NumberPicker) findViewById(R.id.weekPicker);
+        dayPicker = (NumberPicker) findViewById(R.id.dayPicker);
+        hourPicker = (NumberPicker) findViewById(R.id.hourPicker);
+
+        dayPicker.setMaxValue(7);
+        dayPicker.setMinValue(0);
+
+        hourPicker.setMaxValue(24);
+        hourPicker.setMinValue(0);
+
         saveMedicationButton = (Button) findViewById(R.id.saveMedButton);
         saveMedicationButton.setOnClickListener(this);
 
+
         backtoMedicationButton = (Button) findViewById(R.id.backtoMedButton);
         backtoMedicationButton.setOnClickListener(this);
+
+        weekPicker.setOnValueChangedListener(new OnValueChangeListener() {
+
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                // TODO Auto-generated method stub
+
+                week = newVal;
+            }
+        });
     }
 
     public void onClick(View v) {
@@ -88,7 +117,7 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
 
 
                     addMedication(medname, medquantity,mednotes,medweek,medday,medhour);
-
+                    Toast.makeText(getApplicationContext(),"Medication Created",Toast.LENGTH_SHORT).show();
                     Intent i_register = new Intent(createMedActivity.this, MedReminderActivity.class);
                     startActivity(i_register);
                     finish();
@@ -105,6 +134,8 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
 
         }
     }
+
+
 
 
     public void addMedication(String medname, String medquantity, String mednotes, String medweek, String medday, String medhour ){
@@ -136,6 +167,14 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_create_med, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(createMedActivity.this, MedReminderActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

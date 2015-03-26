@@ -91,9 +91,10 @@ public class MedReminderActivity extends ActionBarActivity  implements OnClickLi
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
 
         Intent intent = new Intent(MedReminderActivity.this, MedInfoActivity.class);
+        intent.putExtra("position", position);
         startActivity(intent);
         finish();
-        startActivity(intent);
+
     }
 
 
@@ -102,6 +103,14 @@ public class MedReminderActivity extends ActionBarActivity  implements OnClickLi
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_med_reminder, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(MedReminderActivity.this, MobileMainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

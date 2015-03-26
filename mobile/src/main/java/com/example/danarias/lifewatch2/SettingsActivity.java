@@ -94,6 +94,14 @@ public class SettingsActivity extends ActionBarActivity implements OnClickListen
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(SettingsActivity.this, MobileMainActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
