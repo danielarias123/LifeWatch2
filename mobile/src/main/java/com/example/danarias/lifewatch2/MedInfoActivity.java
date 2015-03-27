@@ -36,9 +36,9 @@ public class MedInfoActivity extends ActionBarActivity implements OnClickListene
         String medname = mydatabase.getMedName(position+1);
         String medquantity = mydatabase.getMedQuantity(position + 1);
         String mednotes = mydatabase.getMedNotes(position + 1);
-        String weeks = mydatabase.getIntervalWeek(position + 1);
-        String days = mydatabase.getIntervalDay(position + 1);
-        String hours = mydatabase.getIntervalHour(position + 1);
+        String intervalnum = mydatabase.getIntervalNum(position + 1);
+        String interval = mydatabase.getInterval(position + 1);
+
 
 
         backtomedication2Button = (Button) findViewById(R.id.backtomed2Button);
@@ -55,7 +55,7 @@ public class MedInfoActivity extends ActionBarActivity implements OnClickListene
 
         TextView intervalTextView = (TextView) findViewById(R.id.intervalTextView);
 
-        intervalTextView.setText(weeks +" weeks "+ days + " days " + hours + " hours " );
+        intervalTextView.setText(intervalnum + " "+ interval);
 
 
     }

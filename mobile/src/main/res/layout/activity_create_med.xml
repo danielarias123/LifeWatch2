@@ -23,11 +23,10 @@
         android:textSize="30sp"
         android:autoText="false"
         android:elegantTextHeight="@bool/abc_action_bar_embed_tabs_pre_jb"
-        android:layout_alignBottom="@+id/medImageView"
+        android:layout_above="@+id/mednameEditText"
         android:layout_toRightOf="@+id/medImageView"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
+        android:layout_marginLeft="20dp"
+        android:gravity="center" />
 
 
 
@@ -54,6 +53,7 @@
             android:layout_below="@+id/mednameEditText"
             android:textSize="25sp"
             android:hint="Quantity"
+
             android:inputType="text" />
         <EditText
             android:fontFamily="sans-serif-thin"
@@ -107,12 +107,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Reminder Interval "
+                android:text="Take Every "
                 android:fontFamily="sans-serif-thin"
 
                 android:id="@+id/rem_intervalTextView"
                 android:textColor="@color/boston_university_red"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:gravity="center"
                 />
 
@@ -126,33 +126,71 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/tablerow2"
-            android:layout_margin="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+
 
             android:baselineAligned="false"
             android:gravity="center">
 
 
-            <NumberPicker
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/weekPicker"
-                android:layout_column="0"
-                android:layout_weight="1"
-                />
+
 
             <NumberPicker
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/dayPicker"
+                android:layout_height="150dp"
+                android:id="@+id/numPicker"
                 android:gravity="center"
                 android:layout_weight="1"/>
 
             <NumberPicker
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/hourPicker"
+                android:layout_height="150dp"
+                android:id="@+id/intervalPicker"
                 android:gravity="right"
                 android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="0dp"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:text="Back"
+                android:gravity="center"
+                android:id="@+id/backtoMedButton"
+                android:textColor="@color/alice_blue"
+                android:textSize="25sp"
+                android:fontFamily="sans-serif-thin"
+                android:background="@color/gray"
+                android:layout_weight="1"
+
+                android:layout_below="@+id/intervaltimeTable"
+
+
+
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+
+                android:text="Save"
+                android:background="@color/boston_university_red"
+                android:id="@+id/saveMedButton"
+                android:layout_weight="1"
+                android:textColor="@color/alice_blue"
+
+                android:textSize="25sp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="sans-serif-thin"
+                android:layout_toRightOf="@+id/saveMedButton"
+                android:layout_alignBottom="@+id/saveMedButton"
+                android:layout_alignTop="@+id/saveMedButton"
+                />
+
         </TableRow>
 
 
@@ -163,37 +201,7 @@
 
 
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:text="Save Medication"
-        android:gravity="center"
-        android:id="@+id/saveMedButton"
-        android:textColor="@color/alice_blue"
-        android:textSize="25sp"
-        android:fontFamily="sans-serif-thin"
-        android:background="@color/boston_university_red"
 
-        android:layout_below="@+id/intervaltimeTable"
-        android:layout_centerHorizontal="true"
-
-
-        />
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:text="Back"
-        android:id="@+id/backtoMedButton"
-
-        android:textColor="@color/alice_blue"
-        android:background="@color/gray"
-        android:textSize="25sp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-thin"
-        android:layout_below="@+id/saveMedButton"
-        android:layout_alignLeft="@+id/saveMedButton"
-        android:layout_alignStart="@+id/saveMedButton"
-        android:layout_marginBottom="10dp"/>
 
 
 

@@ -11,7 +11,7 @@
         android:layout_height="74dp"
         android:id="@+id/medImageView"
         android:src="@drawable/pills_bottle_icon"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
 
         />
 
@@ -67,7 +67,7 @@
         android:layout_below="@+id/quantTextView"
 
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:textSize="15sp"
         android:layout_alignParentStart="true" />
     <TextView
@@ -92,11 +92,11 @@
         android:layout_below="@+id/mednotesTextView"
 
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:textSize="15sp"
         android:layout_alignParentStart="true" />
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Interval"

@@ -35,12 +35,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/settingsTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/settingsTable">
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="100dp"
-            android:layout_alignParentTop="true"
+
             android:layout_centerHorizontal="true"
             android:id="@+id/tablerow1"
             android:background="#bfd0ffed"
@@ -54,8 +54,9 @@
                 android:fontFamily="sans-serif-thin"
                 android:id="@+id/setWaitTextView"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
-                android:layout_gravity="center_vertical" />
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"/>
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
                 android:id="@+id/waitTimeSpinner"
                 android:entries="@array/wait_times"
                 android:layout_column="2"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="20dp"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="@color/boston_university_red" />
         </TableRow>
@@ -72,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:id="@+id/tablerow2"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="#bfd0ffed">
 
             <TextView
@@ -82,15 +83,17 @@
                 android:fontFamily="sans-serif-thin"
                 android:id="@+id/setWatchTextView"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
-
-                android:layout_gravity="center" />
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical"
+                 />
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
                 android:id="@+id/SmartWatchFeaturesCheckBox"
                 android:checked="@color/red"
                 android:layout_column="2" />

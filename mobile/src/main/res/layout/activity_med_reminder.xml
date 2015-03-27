@@ -58,20 +58,7 @@
         android:layout_below="@+id/medicationListView"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:text="Edit Medication"
-        android:id="@+id/editMedButton"
 
-        android:textColor="@color/alice_blue"
-        android:background="@color/boston_university_red"
-        android:textSize="25sp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-thin"
-        android:layout_below="@+id/addMedButton"
-        android:layout_alignLeft="@+id/addMedButton"
-        android:layout_alignStart="@+id/addMedButton" />
     <Button
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -83,9 +70,9 @@
         android:textSize="25sp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-thin"
-        android:layout_below="@+id/editMedButton"
-        android:layout_alignLeft="@+id/editMedButton"
-        android:layout_alignStart="@+id/editMedButton"
+        android:layout_below="@+id/addMedButton"
+        android:layout_alignLeft="@+id/addMedButton"
+        android:layout_alignStart="@+id/addMedButton"
         android:layout_marginBottom="10dp"/>
 
 </RelativeLayout>

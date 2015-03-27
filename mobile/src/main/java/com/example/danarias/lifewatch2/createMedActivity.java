@@ -23,18 +23,20 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
     EditText medName;
     EditText quantity;
     EditText medNotes;
-    EditText intervalWeek;
-    EditText intervalDay;
-    EditText intervalHour;
-    NumberPicker weekPicker;
-    NumberPicker dayPicker;
-    NumberPicker hourPicker;
-    Integer week;
+
+
+    NumberPicker numPicker;
+    NumberPicker intervalPicker;
+    Integer num;
+    Integer interval;
+
 
 
 
     Button saveMedicationButton;
     Button backtoMedicationButton;
+
+    String[] Intervals;
 
     private DbHelper myDb = new DbHelper(createMedActivity.this);
 
@@ -43,30 +45,68 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_med);
 
-        weekPicker = (NumberPicker) findViewById(R.id.weekPicker);
-        dayPicker = (NumberPicker) findViewById(R.id.dayPicker);
-        hourPicker = (NumberPicker) findViewById(R.id.hourPicker);
+        num =0;
+        interval=0;
 
-        dayPicker.setMaxValue(7);
-        dayPicker.setMinValue(0);
 
-        hourPicker.setMaxValue(24);
-        hourPicker.setMinValue(0);
+
+        numPicker = (NumberPicker) findViewById(R.id.numPicker);
+        intervalPicker = (NumberPicker) findViewById(R.id.intervalPicker);
+
+
+
+
+        Intervals=new String[3];
+        Intervals[0]="hour(s)";
+        Intervals[1]="day(s)";
+        Intervals[2]="week(s)";
+
+
+
+
+
+
+
+        numPicker.setMaxValue(20);
+        numPicker.setMinValue(0);
+        numPicker.setWrapSelectorWheel(false);
+
+
+        intervalPicker.setMaxValue(Intervals.length-1);
+        intervalPicker.setMinValue(0);
+        intervalPicker.setDisplayedValues(Intervals);
+        intervalPicker.setWrapSelectorWheel(false);
+
+
+
+
+
 
         saveMedicationButton = (Button) findViewById(R.id.saveMedButton);
         saveMedicationButton.setOnClickListener(this);
 
 
+
         backtoMedicationButton = (Button) findViewById(R.id.backtoMedButton);
         backtoMedicationButton.setOnClickListener(this);
 
-        weekPicker.setOnValueChangedListener(new OnValueChangeListener() {
+
+        numPicker.setOnValueChangedListener(new OnValueChangeListener() {
 
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 // TODO Auto-generated method stub
 
-                week = newVal;
+                num = newVal;
+            }
+        });
+        intervalPicker.setOnValueChangedListener(new OnValueChangeListener() {
+
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                // TODO Auto-generated method stub
+
+                interval = newVal;
             }
         });
     }
@@ -79,19 +119,16 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
                 medName = (EditText) findViewById(R.id.mednameEditText);
                 quantity = (EditText) findViewById(R.id.medquantityEditText);
                 medNotes = (EditText) findViewById(R.id.medNotesEditText);
-                intervalWeek = (EditText) findViewById(R.id.weekEditText);
-                intervalDay = (EditText) findViewById(R.id.dayEditText);
-                intervalHour = (EditText) findViewById(R.id.hourEditText);
 
                 String medname = medName.getText().toString();
                 String medquantity = quantity.getText().toString();
                 String mednotes = medNotes.getText().toString();
-                String medweek = intervalWeek.getText().toString();
-                String medday = intervalDay.getText().toString();
-                String medhour = intervalDay.getText().toString();
+
+                String number = num+"";
+                String medinterval = Intervals[interval];
 
 
-                Toast.makeText(getApplicationContext(),"Medication Created",Toast.LENGTH_SHORT).show();
+
 
                 boolean invalid = false;
                 if (medname.equals("")){
@@ -101,22 +138,19 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
                     invalid = true;
                     Toast.makeText(getApplicationContext(), "Quantity Missing", Toast.LENGTH_SHORT).show();
                 }
-                else if(medweek.equals("")) {
+                else if(number.equals("")) {
                     invalid = true;
                     Toast.makeText(getApplicationContext(), "Weeks Missing", Toast.LENGTH_SHORT).show();
                 }
-                else if(medday.equals("")) {
+                else if(medinterval.equals("")) {
                     invalid = true;
                     Toast.makeText(getApplicationContext(), "Days Missing", Toast.LENGTH_SHORT).show();
                 }
-                else if(medhour.equals("")) {
-                    invalid = true;
-                    Toast.makeText(getApplicationContext(), "Hours Missing", Toast.LENGTH_SHORT).show();
-                }
+
                 if(invalid == false){
 
 
-                    addMedication(medname, medquantity,mednotes,medweek,medday,medhour);
+                    addMedication(medname, medquantity,mednotes,number,medinterval);
                     Toast.makeText(getApplicationContext(),"Medication Created",Toast.LENGTH_SHORT).show();
                     Intent i_register = new Intent(createMedActivity.this, MedReminderActivity.class);
                     startActivity(i_register);
@@ -138,7 +172,7 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
 
 
 
-    public void addMedication(String medname, String medquantity, String mednotes, String medweek, String medday, String medhour ){
+    public void addMedication(String medname, String medquantity, String mednotes, String number, String interval ){
 
         SQLiteDatabase db = myDb.getWritableDatabase();
 
@@ -146,9 +180,9 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
         values.put("medname", medname);
         values.put("medquantity", medquantity);
         values.put("mednotes", mednotes);
-        values.put("medweek", medweek);
-        values.put("medday", medday);
-        values.put("medhour", medhour);
+        values.put("remnumber", number);
+        values.put("interval", interval);
+
 
 
         try{
