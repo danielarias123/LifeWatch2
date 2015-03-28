@@ -1,5 +1,7 @@
 package com.example.danarias.lifewatch2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,6 +23,8 @@ import android.database.sqlite.SQLiteDatabase;
 public class ContactInfoActivity extends ActionBarActivity implements OnClickListener {
 
     Button backtocontacts2Button;
+    Button deleteContactButton;
+
     DbHelper mydatabase = new DbHelper(this);
     RadioGroup onOffRadioGroup;
     RadioButton contactRadioButton;
@@ -44,7 +48,7 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
 
         String contname = mydatabase.getName(position+1);
         String contphone = mydatabase.getPhone(position + 1);
-         String contemail = mydatabase.getEmail(position + 1);
+        String contemail = mydatabase.getEmail(position + 1);
         final String ifEmergContact = mydatabase.getIfEmergContact(position+1).toString();
 
         TextView nameTextView = (TextView) findViewById(R.id.contactInfoTextView);
@@ -58,6 +62,9 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
 
         backtocontacts2Button = (Button) findViewById(R.id.backtocontacts2Button);
         backtocontacts2Button.setOnClickListener(this);
+
+        deleteContactButton = (Button) findViewById(R.id.deleteContactButton);
+        deleteContactButton.setOnClickListener(this);
 
 
         onOffRadioGroup = (RadioGroup) findViewById(R.id.onOffRadioGroup);
@@ -100,6 +107,36 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
                 finish();
                 break;
 
+            case R.id.deleteContactButton:
+                AlertDialog.Builder ad = new AlertDialog.Builder(ContactInfoActivity.this);
+
+                ad.setMessage("Delete this contact?");
+                ad.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Delete of record from Database and List view.
+                        //deleteContact(position);
+                        Toast.makeText(getApplicationContext(),"Contact Deleted",Toast.LENGTH_SHORT).show();
+                        Intent i2 = new Intent(ContactInfoActivity.this, ContactsActivity.class);
+                        startActivity(i2);
+                        finish();
+
+                    }
+                });
+                ad.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+
+
+                break;
+
 
 
 
@@ -119,6 +156,12 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
         db.update(DbHelper.CONTACTS_TABLE_NAME, cv, "_id "+"="+(position+1), null);
         db.close();
 
+    }
+
+    public void deleteContact(Integer position){
+        SQLiteDatabase db = mydatabase.getWritableDatabase();
+        db.delete(DbHelper.CONTACTS_TABLE_NAME, "_id " + "=" + (position+1), null);
+        db.close();
     }
 
 

@@ -42,7 +42,7 @@
 
         android:layout_alignParentLeft="true"
         android:layout_marginTop="30dp"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -55,7 +55,7 @@
         android:fontFamily="sans-serif-thin"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="5dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -68,7 +68,7 @@
 
         android:layout_alignParentLeft="true"
         android:layout_marginTop="0dp"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_alignParentStart="true" />
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
         android:fontFamily="sans-serif-thin"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="5dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -93,20 +93,36 @@
 
         android:layout_alignParentLeft="true"
         android:layout_marginTop="0dp"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_alignParentStart="true" />
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Interval"
-        android:id="@+id/intervalTextView"
+        android:text="Interval Num"
+        android:id="@+id/intervalnumTextView"
         android:layout_below="@+id/interval1TextView"
         android:fontFamily="sans-serif-thin"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="5dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Interval Rate"
+        android:id="@+id/intervalrateTextView"
+        android:layout_toRightOf="@+id/intervalnumTextView"
+        android:layout_alignBottom="@+id/intervalnumTextView"
+        android:layout_alignTop="@+id/intervalnumTextView"
+        android:fontFamily="sans-serif-thin"
+
+        android:layout_marginLeft="5dp"
+
+        android:textSize="25sp"
+         />
 
     <Button
         android:layout_width="250dp"
@@ -119,7 +135,7 @@
         android:textSize="25sp"
         android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-thin"
-        android:layout_below="@+id/intervalTextView"
+        android:layout_below="@+id/intervalnumTextView"
         android:layout_centerHorizontal="true"
         />
 

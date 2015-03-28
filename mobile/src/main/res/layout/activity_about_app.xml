@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.danarias.lifewatch2.AboutAppActivity">
+
+    <ImageView
+        android:layout_width="71dp"
+        android:layout_height="74dp"
+        android:id="@+id/aboutPageImageView"
+        android:src="@drawable/ambulance_icon"
+        />
+
+    <TextView
+        android:id="@+id/aboutTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="About"
+        android:textColor="@color/boston_university_red"
+        android:textSize="50sp"
+        android:autoText="false"
+        android:elegantTextHeight="@bool/abc_action_bar_embed_tabs_pre_jb"
+        android:layout_alignBottom="@+id/aboutPageImageView"
+        android:layout_toRightOf="@+id/aboutPageImageView"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Back"
+        android:id="@+id/backtoMenuButton"
+
+        android:textColor="@color/alice_blue"
+        android:background="@color/gray"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-thin"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:text="@string/about_app_desc"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-thin"
+        android:background="@color/lightgrey"
+
+
+        android:scrollbars = "vertical"
+        android:textColor="#000000"
+        android:id="@+id/appDiscTextView"
+        android:layout_below="@+id/aboutTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentBottom="false"
+        android:elegantTextHeight="false"
+        android:padding="30dp" />
+
+</RelativeLayout>

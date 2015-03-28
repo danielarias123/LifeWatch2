@@ -15,5 +15,8 @@
     <string name="title_activity_med_reminder">MedReminderActivity</string>
     <string name="title_activity_create_med">createMedActivity</string>
     <string name="title_activity_med_info">MedInfoActivity</string>
+    <string name="title_activity_about_app">AboutAppActivity</string>
+    <string name="about_app_desc"><b>LifeWatch</b> is fall detection application designed with the elderly
+    in mind.\n\n<b>Emergency Messages</b> are sent automatically to select contacts once a fall is detected or the <b>Emergency</b> Button is activated.\n\n<b>Emergency Contacts</b> can be created, edited, and deleted through the <b>Contacts</b> button.\n\n<b>Medication Reminders</b> can be created, edited, and deleted through the <b>Medication</b> button.\n\nVarious settings can be edited through the <b>Settings</b> button.\n\n<i>As of release version, <b>SmartWatch</b> should be on <b>left wrist</b> and <b>SmartPhone</b> should be in <b>right pant pocket</b>.</i></string>
 
 </resources>

@@ -50,6 +50,10 @@
             android:name=".MedInfoActivity"
             android:label="@string/title_activity_med_info" >
         </activity>
+        <activity
+            android:name=".AboutAppActivity"
+            android:label="@string/title_activity_about_app" >
+        </activity>
     </application>
 
 </manifest>

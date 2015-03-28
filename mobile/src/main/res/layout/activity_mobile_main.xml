@@ -135,5 +135,13 @@
         android:layout_alignRight="@+id/settImageView"
         android:layout_alignEnd="@+id/settImageView" />
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/aboutImageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/questionmark" />
+
 
 </RelativeLayout>

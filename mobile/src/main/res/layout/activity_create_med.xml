@@ -107,12 +107,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Take Every "
+                android:text="Take Every: "
                 android:fontFamily="sans-serif-thin"
-
+                android:layout_marginBottom="10dp"
                 android:id="@+id/rem_intervalTextView"
                 android:textColor="@color/boston_university_red"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:gravity="center"
                 />
 
@@ -126,7 +126,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/tablerow2"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:layout_marginBottom="30dp"
 
 
@@ -141,6 +141,7 @@
                 android:layout_height="150dp"
                 android:id="@+id/numPicker"
                 android:gravity="center"
+                android:background="#bfd0ffed"
                 android:layout_weight="1"/>
 
             <NumberPicker
@@ -148,6 +149,7 @@
                 android:layout_height="150dp"
                 android:id="@+id/intervalPicker"
                 android:gravity="right"
+                android:background="#bfd0ffed"
                 android:layout_weight="1"/>
         </TableRow>
 
@@ -168,7 +170,7 @@
                 android:background="@color/gray"
                 android:layout_weight="1"
 
-                android:layout_below="@+id/intervaltimeTable"
+
 
 
 
@@ -186,9 +188,7 @@
                 android:textSize="25sp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="sans-serif-thin"
-                android:layout_toRightOf="@+id/saveMedButton"
-                android:layout_alignBottom="@+id/saveMedButton"
-                android:layout_alignTop="@+id/saveMedButton"
+
                 />
 
         </TableRow>

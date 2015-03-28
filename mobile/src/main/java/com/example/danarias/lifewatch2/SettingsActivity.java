@@ -27,7 +27,8 @@ public class SettingsActivity extends ActionBarActivity implements OnClickListen
 
 
 
-    public static String waitTime;
+    public static String waitTime ="5s";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class SettingsActivity extends ActionBarActivity implements OnClickListen
         waitTime = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "You selected: " + waitTime,
+        Toast.makeText(parent.getContext(), "Default Wait Time: " + waitTime,
                 Toast.LENGTH_LONG).show();
 
     }

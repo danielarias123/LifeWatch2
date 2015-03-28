@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
-
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -29,7 +29,7 @@ public class ContactsActivity extends ActionBarActivity implements OnClickListen
     Button backButton;
 
     ListView list;
-
+    ListView list2;
 
     ArrayAdapter<String> adapter;
     ArrayList<String> arrayList;
@@ -51,8 +51,11 @@ public class ContactsActivity extends ActionBarActivity implements OnClickListen
         addContactButton = (Button) findViewById(R.id.createContactButton);
         addContactButton.setOnClickListener(this);
 
+
         list = (ListView) findViewById(R.id.contactsListView);
+
         list.setOnItemClickListener(this);
+
         arrayList = new ArrayList<String>();
 
         backButton = (Button) findViewById(R.id.backButton);
@@ -61,8 +64,7 @@ public class ContactsActivity extends ActionBarActivity implements OnClickListen
         adapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_expandable_list_item_1);
         list.setAdapter(adapter);
-        //String[] columns = {"name"};
-        //retrieveEntries(columns,null,null);
+
 
         List<String> contacts = myDb.getAllContacts();
         for (String name: contacts ) {
@@ -109,6 +111,13 @@ public class ContactsActivity extends ActionBarActivity implements OnClickListen
         ;
     }
 
+
+
+    public void deleteContact(Integer position){
+        SQLiteDatabase db = myDb.getWritableDatabase();
+        db.delete(DbHelper.CONTACTS_TABLE_NAME, "_id " + "=" + (position+1), null);
+        db.close();
+    }
 
 
     @Override

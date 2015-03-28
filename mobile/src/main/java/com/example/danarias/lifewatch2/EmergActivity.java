@@ -26,9 +26,9 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
     TextView countdown;
     private static final String FORMAT = "%02d";
     public String setTime = SettingsActivity.waitTime;
+    CountDownTimer timer;
 
-
-    long seconds = 11000;
+    long seconds = 6000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,17 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
 
         countdown=(TextView)findViewById(R.id.countdownTextView);
 
-       /* if(setTime.equals("15 s")){
+
+        if(setTime.equals("5 s")){
+            seconds = 6000;
+        }
+
+
+        if(setTime.equals("10 s")){
+            seconds = 11000;
+        }
+
+        if(setTime.equals("15 s")){
             seconds = 16000;
         }
 
@@ -53,9 +63,9 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
         if(setTime.equals("60 s")){
             seconds = 61000;
         }
-    */
 
-        new CountDownTimer(seconds,100){
+
+        timer = new CountDownTimer(seconds,100){
 
             public void onTick(long millisUntilFinished) {
 
@@ -66,7 +76,7 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
             }
 
             public void onFinish() {
-                countdown.setText("CALLING");
+                countdown.setText("SENT");
                 String textPhoneNo = "9053997017";
                 String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
 
@@ -93,14 +103,32 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
 
             case R.id.cancEmergButton:
                 Intent intent = new Intent(EmergActivity.this, MobileMainActivity.class);
+                timer.cancel();
+                Toast.makeText(getApplicationContext(), "Emergency Cancelled!",
+                        Toast.LENGTH_LONG).show();
                 startActivity(intent);
                 finish();
                 break;
 
 
             case R.id.contactNowButton:
-                countdown.setText("CALLING");
+                timer.cancel();
+                countdown.setText("SENT");
 
+                String textPhoneNo = "9053997017";
+                String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
+
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(textPhoneNo, null, textSMS, null, null);
+                    Toast.makeText(getApplicationContext(), "Emergency SMS Sent!",
+                            Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),
+                            "SMS failed, please try again later!",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
                 countdown.setFreezesText(true);
                 // Intent i = new Intent(MobileMainActivity.this, ContactsActivity.class);
                 // startActivity(i);
@@ -118,6 +146,17 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_emerg, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        timer.cancel();
+
+        Intent i = new Intent(EmergActivity.this, MobileMainActivity.class);
+        startActivity(i);
+        finish();
+
     }
 
     @Override

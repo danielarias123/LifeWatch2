@@ -33,11 +33,15 @@ public class MedInfoActivity extends ActionBarActivity implements OnClickListene
         Intent intent = getIntent();
         position = intent.getIntExtra("position", 0);
 
+
+
         String medname = mydatabase.getMedName(position+1);
         String medquantity = mydatabase.getMedQuantity(position + 1);
         String mednotes = mydatabase.getMedNotes(position + 1);
         String intervalnum = mydatabase.getIntervalNum(position + 1);
-        String interval = mydatabase.getInterval(position + 1);
+        String intervalrate = mydatabase.getInterval(position + 1);
+
+
 
 
 
@@ -53,9 +57,11 @@ public class MedInfoActivity extends ActionBarActivity implements OnClickListene
         TextView mednotesTextView = (TextView) findViewById(R.id.mednotesTextView);
         mednotesTextView.setText(mednotes);
 
-        TextView intervalTextView = (TextView) findViewById(R.id.intervalTextView);
+        TextView intervalTextView = (TextView) findViewById(R.id.intervalnumTextView);
+        intervalTextView.setText(intervalnum);
 
-        intervalTextView.setText(intervalnum + " "+ interval);
+        TextView intervalrateTextView = (TextView) findViewById(R.id.intervalrateTextView);
+        intervalrateTextView.setText(intervalrate);
 
 
     }

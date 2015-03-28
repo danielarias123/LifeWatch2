@@ -139,7 +139,7 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
 
         try{
             db.insert(DbHelper.CONTACTS_TABLE_NAME, null, values);
-            Toast.makeText(getApplicationContext(), "Inserted", Toast.LENGTH_SHORT).show();
+
         }catch(Exception e){
             e.printStackTrace();
         }

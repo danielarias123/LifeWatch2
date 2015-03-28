@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
+import android.widget.ImageView;
 
 
 public class MobileMainActivity extends ActionBarActivity implements OnClickListener{
@@ -17,6 +17,8 @@ public class MobileMainActivity extends ActionBarActivity implements OnClickList
     Button contactsButton;
     Button medReminderButton;
     Button settingsButton;
+
+    ImageView questionMark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,20 @@ public class MobileMainActivity extends ActionBarActivity implements OnClickList
         settingsButton = (Button) findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(this);
 
+        questionMark = (ImageView) findViewById(R.id.aboutImageView);
+
+
+        questionMark.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MobileMainActivity.this, AboutAppActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+
+        });
 
 
     }

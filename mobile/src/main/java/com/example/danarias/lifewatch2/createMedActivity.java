@@ -57,9 +57,9 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
 
 
         Intervals=new String[3];
-        Intervals[0]="hour(s)";
-        Intervals[1]="day(s)";
-        Intervals[2]="week(s)";
+        Intervals[0]="Hour(s)";
+        Intervals[1]="Day(s)";
+        Intervals[2]="Week(s)";
 
 
 
@@ -194,6 +194,8 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
         db.close();
 
     }
+
+
 
 
     @Override

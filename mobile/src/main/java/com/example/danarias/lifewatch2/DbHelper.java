@@ -17,7 +17,7 @@ import android.util.Log;
 public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "lifewatch.db";
-    private static final int DATABASE_VERSION = 16;
+    private static final int DATABASE_VERSION = 23;
     public static final String CONTACTS_TABLE_NAME = "Contacts";
     public static final String MEDICATION_TABLE_NAME = "Medication";
 
@@ -300,7 +300,12 @@ public class DbHelper extends SQLiteOpenHelper{
         return result;
     }
 
-
+    public void deleteContact(int ids) {
+        // TODO Auto-generated method stub
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        mydb.delete(MEDICATION_TABLE_NAME, USER_ID + " = " + ids, null);
+        mydb.close();
+    }
 
 
     public Cursor getAllRows() {
