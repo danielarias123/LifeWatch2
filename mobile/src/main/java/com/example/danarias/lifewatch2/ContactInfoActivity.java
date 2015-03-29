@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.RadioButton;
@@ -25,10 +26,14 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
     Button backtocontacts2Button;
     Button deleteContactButton;
 
+    EditText textMessageEditText;
+
+
     DbHelper mydatabase = new DbHelper(this);
     RadioGroup onOffRadioGroup;
     RadioButton contactRadioButton;
     int position;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +53,12 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
 
         String contname = mydatabase.getName(position+1);
         String contphone = mydatabase.getPhone(position + 1);
-        String contemail = mydatabase.getEmail(position + 1);
+
         final String ifEmergContact = mydatabase.getIfEmergContact(position+1).toString();
+        final String textMessage = mydatabase.getTextMessage(position + 1).toString();
+
+        textMessageEditText = (EditText) findViewById(R.id.customTextEditText);
+        textMessageEditText.setText(textMessage);
 
         TextView nameTextView = (TextView) findViewById(R.id.contactInfoTextView);
         nameTextView.setText(contname);
@@ -57,8 +66,7 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
         TextView phoneTextView = (TextView) findViewById(R.id.phoneTextView);
         phoneTextView.setText(contphone);
 
-        TextView emailTextView = (TextView) findViewById(R.id.emailTextView);
-        emailTextView.setText(contemail);
+
 
         backtocontacts2Button = (Button) findViewById(R.id.backtocontacts2Button);
         backtocontacts2Button.setOnClickListener(this);
@@ -71,7 +79,9 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
 
 
 
-        onOffRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+
+            onOffRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                  int selected = onOffRadioGroup.getCheckedRadioButtonId();
@@ -102,9 +112,24 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
         switch (v.getId()) {
 
             case R.id.backtocontacts2Button:
-                Intent i = new Intent(ContactInfoActivity.this, ContactsActivity.class);
-                startActivity(i);
-                finish();
+                String customMessage = textMessageEditText.getText().toString();
+
+                boolean invalid = false;
+                if (customMessage.equals("")) {
+                    invalid = true;
+                    Toast.makeText(getApplicationContext(), "Message Missing", Toast.LENGTH_SHORT).show();
+                }
+
+                if(invalid == false){
+
+
+                    changeMessage(customMessage,position);
+
+                    Intent i = new Intent(ContactInfoActivity.this, ContactsActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+
                 break;
 
             case R.id.deleteContactButton:
@@ -153,6 +178,17 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
 
         ContentValues cv = new ContentValues();
         cv.put("ifEmergContact",ifEmergContact); //These Fields should be your String values of actual column names
+        db.update(DbHelper.CONTACTS_TABLE_NAME, cv, "_id "+"="+(position+1), null);
+        db.close();
+
+    }
+
+    public void changeMessage(String textMessage, Integer position){
+
+        SQLiteDatabase db = mydatabase.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put("message",textMessage); //These Fields should be your String values of actual column names
         db.update(DbHelper.CONTACTS_TABLE_NAME, cv, "_id "+"="+(position+1), null);
         db.close();
 

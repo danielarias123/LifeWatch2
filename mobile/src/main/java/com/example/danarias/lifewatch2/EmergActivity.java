@@ -86,12 +86,14 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
             public void onFinish() {
                 countdown.setText("SENT");
 
-                String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
+
 
                 List<String> recipients = myDb.getAllNumbers();
                 for (String PhoneNo: recipients ) {
                     if (!PhoneNo.equals("")) {
                         try {
+
+                            String textSMS = myDb.getRecipeintTextMessage(PhoneNo).toString();
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(PhoneNo, null, textSMS, null, null);
                             Toast.makeText(getApplicationContext(), "Emergency SMS Sent to "+PhoneNo+"!",
@@ -135,13 +137,14 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
                 timer.cancel();
                 countdown.setText("SENT");
 
-                
-                String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
+
+
 
                 List<String> recipients = myDb.getAllNumbers();
                 for (String PhoneNo: recipients ) {
                     if (!PhoneNo.equals("")) {
                         try {
+                            String textSMS = myDb.getRecipeintTextMessage(PhoneNo).toString();
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(PhoneNo, null, textSMS, null, null);
                             Toast.makeText(getApplicationContext(), "Emergency SMS Sent to "+PhoneNo+"!",

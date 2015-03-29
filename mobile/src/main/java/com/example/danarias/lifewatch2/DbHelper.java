@@ -19,15 +19,16 @@ import java.sql.SQLException;
 public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "lifewatch.db";
-    private static final int DATABASE_VERSION = 28;
+    private static final int DATABASE_VERSION = 30;
     public static final String CONTACTS_TABLE_NAME = "Contacts";
     public static final String MEDICATION_TABLE_NAME = "Medication";
 
     public static final String USER_ID = "_id";
     public static final String NAME_CONTACT = "name";
     public static final String PHONE_CONTACT = "phone";
-    public static final String EMAIL_CONTACT = "email";
+
     public static final String IF_EMERG_CONTACT = "ifEmergContact";
+    public static final String TEXT_MESSAGE = "message";
 
     public static final String MED_ID = "med_id";
     public static final String NAME_MED = "medname";
@@ -37,12 +38,13 @@ public class DbHelper extends SQLiteOpenHelper{
     public static final String INTERVAL = "interval";
 
 
-    public static final String[] ALL_KEYS = new String[] {USER_ID, NAME_CONTACT, PHONE_CONTACT, EMAIL_CONTACT, IF_EMERG_CONTACT};
+
+    public static final String[] ALL_KEYS = new String[] {USER_ID, NAME_CONTACT, PHONE_CONTACT, IF_EMERG_CONTACT, TEXT_MESSAGE};
 
     private static final String LIFEWATCH_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + CONTACTS_TABLE_NAME + "(" +USER_ID
                     +" INTEGER PRIMARY KEY, "+
-                    NAME_CONTACT + " TEXT NOT NULL, "+PHONE_CONTACT+ " TEXT NOT NULL, "+EMAIL_CONTACT+ " TEXT, "+ IF_EMERG_CONTACT+" TEXT);";
+                    NAME_CONTACT + " TEXT NOT NULL, "+PHONE_CONTACT+ " TEXT NOT NULL, "+ IF_EMERG_CONTACT+" TEXT, "+ TEXT_MESSAGE+" TEXT DEFAULT \"** LifeWatch Automated Message ** Help! I have fallen and can't get up.\");";
 
     private static final String MEDICATION_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + MEDICATION_TABLE_NAME + "(" +MED_ID
@@ -161,7 +163,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public String getName(Integer contact_id){
         SQLiteDatabase mydb = this.getWritableDatabase();
-        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT,EMAIL_CONTACT};
+        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT};
         String clause = USER_ID +" = '"+contact_id+"'";
         Cursor c = mydb.query(CONTACTS_TABLE_NAME, columns,clause, null, null, null, null, null);
 
@@ -169,7 +171,7 @@ public class DbHelper extends SQLiteOpenHelper{
         int irow = c.getColumnIndex(USER_ID);
         int iname = c.getColumnIndex(NAME_CONTACT);
         int iphone = c.getColumnIndex(PHONE_CONTACT);
-        int iemail = c.getColumnIndex(EMAIL_CONTACT);
+
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
             result = c.getString(iname)+"\n";
         }
@@ -181,7 +183,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public String getPhone(Integer contact_id){
         SQLiteDatabase mydb = this.getWritableDatabase();
-        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT,EMAIL_CONTACT};
+        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT};
         String clause = USER_ID +" = '"+contact_id+"'";
         Cursor c = mydb.query(CONTACTS_TABLE_NAME, columns,clause, null, null, null, null, null);
 
@@ -189,7 +191,7 @@ public class DbHelper extends SQLiteOpenHelper{
         int irow = c.getColumnIndex(USER_ID);
         int iname = c.getColumnIndex(NAME_CONTACT);
         int iphone = c.getColumnIndex(PHONE_CONTACT);
-        int iemail = c.getColumnIndex(EMAIL_CONTACT);
+
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
             result = c.getString(iphone)+"\n";
         }
@@ -199,29 +201,11 @@ public class DbHelper extends SQLiteOpenHelper{
         return result;
     }
 
-    public String getEmail(Integer contact_id){
-        SQLiteDatabase mydb = this.getWritableDatabase();
-        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT,EMAIL_CONTACT};
-        String clause = USER_ID +" = '"+contact_id+"'";
-        Cursor c = mydb.query(CONTACTS_TABLE_NAME, columns,clause, null, null, null, null, null);
 
-        String result="";
-        int irow = c.getColumnIndex(USER_ID);
-        int iname = c.getColumnIndex(NAME_CONTACT);
-        int iphone = c.getColumnIndex(PHONE_CONTACT);
-        int iemail = c.getColumnIndex(EMAIL_CONTACT);
-        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
-            result = c.getString(iemail)+"\n";
-        }
-
-        mydb.close();
-        c.close();
-        return result;
-    }
 
     public String getIfEmergContact(Integer contact_id){
         SQLiteDatabase mydb = this.getWritableDatabase();
-        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT,EMAIL_CONTACT, IF_EMERG_CONTACT};
+        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT, IF_EMERG_CONTACT};
         String clause = USER_ID +" = '"+contact_id+"'";
         Cursor c = mydb.query(CONTACTS_TABLE_NAME, columns,clause, null, null, null, null, null);
 
@@ -229,10 +213,53 @@ public class DbHelper extends SQLiteOpenHelper{
         int irow = c.getColumnIndex(USER_ID);
         int iname = c.getColumnIndex(NAME_CONTACT);
         int iphone = c.getColumnIndex(PHONE_CONTACT);
-        int iemail = c.getColumnIndex(EMAIL_CONTACT);
+
         int iEmergContact = c.getColumnIndex(IF_EMERG_CONTACT);
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
             result = c.getString(iEmergContact)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+
+    public String getTextMessage(Integer id){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT, IF_EMERG_CONTACT, TEXT_MESSAGE};
+        String clause = USER_ID +" = '"+id+"'";
+        Cursor c = mydb.query(CONTACTS_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
+        int irow = c.getColumnIndex(USER_ID);
+        int iname = c.getColumnIndex(NAME_CONTACT);
+        int iphone = c.getColumnIndex(PHONE_CONTACT);
+
+        int iEmergContact = c.getColumnIndex(IF_EMERG_CONTACT);
+        int iTextMessage = c.getColumnIndex(TEXT_MESSAGE);
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(iTextMessage)+"\n";
+        }
+
+        mydb.close();
+        c.close();
+        return result;
+    }
+
+    public String getRecipeintTextMessage(String phoneNum){
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        String[] columns = new String[]{ NAME_CONTACT,PHONE_CONTACT, IF_EMERG_CONTACT, TEXT_MESSAGE};
+        String clause = PHONE_CONTACT +" = '"+ phoneNum+"'";
+        Cursor c = mydb.query(CONTACTS_TABLE_NAME, columns,clause, null, null, null, null, null);
+
+        String result="** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
+        int irow = c.getColumnIndex(USER_ID);
+        int iname = c.getColumnIndex(NAME_CONTACT);
+        int iphone = c.getColumnIndex(PHONE_CONTACT);
+        int iEmergContact = c.getColumnIndex(IF_EMERG_CONTACT);
+        int iTextMessage = c.getColumnIndex(TEXT_MESSAGE);
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = c.getString(iTextMessage)+"\n";
         }
 
         mydb.close();

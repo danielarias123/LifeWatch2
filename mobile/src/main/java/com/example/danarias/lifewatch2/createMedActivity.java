@@ -191,7 +191,7 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
 
         try{
             db.insert(DbHelper.MEDICATION_TABLE_NAME, null, values);
-            Toast.makeText(getApplicationContext(), "Inserted", Toast.LENGTH_SHORT).show();
+
         }catch(Exception e){
             e.printStackTrace();
         }

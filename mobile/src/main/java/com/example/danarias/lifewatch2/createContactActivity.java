@@ -22,7 +22,7 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
 
     EditText contactName;
     EditText contactNumber;
-    EditText contactEmail;
+
 
 
 
@@ -61,11 +61,10 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
             case R.id.saveContactButton:
                 contactName = (EditText) findViewById(R.id.nameEditText);
                 contactNumber = (EditText) findViewById(R.id.phoneEditText);
-                contactEmail = (EditText) findViewById(R.id.emailEditText);
 
                 String name = contactName.getText().toString();
                 String phone = contactNumber.getText().toString();
-                String email = contactEmail.getText().toString();
+
 
 
                 boolean invalid = false;
@@ -79,7 +78,7 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
                 if(invalid == false){
 
 
-                    addEntry(name, phone, email);
+                    addEntry(name, phone);
                     Toast.makeText(getApplicationContext(),"Contact Created",Toast.LENGTH_SHORT).show();
                     Intent i_register = new Intent(createContactActivity.this, ContactsActivity.class);
                     startActivity(i_register);
@@ -128,7 +127,7 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
     }
 
 
-    public void addEntry(String name, String phone, String email){
+    public void addEntry(String name, String phone){
 
         SQLiteDatabase db = myDb.getWritableDatabase();
 
@@ -138,7 +137,6 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
         values.put("_id", count+1);
         values.put("name", name);
         values.put("phone", phone);
-        values.put("email", email);
         values.put("ifEmergContact","no");
 
         try{
