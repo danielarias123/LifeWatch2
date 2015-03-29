@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
 
 
 
@@ -131,7 +132,10 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
 
         SQLiteDatabase db = myDb.getWritableDatabase();
 
+        Integer count = getContactCount();
+
         ContentValues values = new ContentValues();
+        values.put("_id", count+1);
         values.put("name", name);
         values.put("phone", phone);
         values.put("email", email);
@@ -145,6 +149,16 @@ public class createContactActivity extends ActionBarActivity implements OnClickL
         }
         db.close();
 
+    }
+
+    public int getContactCount() {
+        SQLiteDatabase db = myDb.getWritableDatabase();
+        String countQuery = "SELECT  * FROM " + DbHelper.CONTACTS_TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int cnt = cursor.getCount();
+        cursor.close();
+        return cnt;
     }
 
 

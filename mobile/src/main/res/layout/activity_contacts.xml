@@ -32,7 +32,7 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:fontFamily="sans-serif-thin"
         android:textSize="30sp"
         android:id="@+id/contactsListView"
@@ -42,7 +42,7 @@
 
         android:drawSelectorOnTop="false"
         android:background="#bfd0ffed"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="250dp"
@@ -53,7 +53,7 @@
         android:id="@+id/createContactButton"
         android:textColor="@color/alice_blue"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-thin"
         android:background="@color/boston_university_red"
         android:layout_below="@+id/contactsListView"

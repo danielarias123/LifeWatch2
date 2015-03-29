@@ -44,7 +44,7 @@ public class MobileMainActivity extends ActionBarActivity implements OnClickList
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MobileMainActivity.this, AboutAppActivity.class);
+                Intent intent = new Intent(MobileMainActivity.this, AndroidDatabaseManager.class);
                 startActivity(intent);
                 finish();
 

@@ -38,7 +38,7 @@
         android:textColor="@color/alice_blue"
         android:background="@color/gray"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
+
         android:fontFamily="sans-serif-thin"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
@@ -47,9 +47,9 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="320dp"
         android:text="@string/about_app_desc"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:fontFamily="sans-serif-thin"
         android:background="@color/lightgrey"
 
@@ -59,7 +59,7 @@
         android:id="@+id/appDiscTextView"
         android:layout_below="@+id/aboutTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="false"
         android:layout_alignParentRight="false"

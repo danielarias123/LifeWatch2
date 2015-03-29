@@ -31,9 +31,9 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:fontFamily="sans-serif-thin"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:id="@+id/medicationListView"
         android:layout_below="@+id/medImageView"
         android:layout_alignParentLeft="true"
@@ -52,7 +52,7 @@
         android:id="@+id/addMedButton"
         android:textColor="@color/alice_blue"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-thin"
         android:background="@color/boston_university_red"
         android:layout_below="@+id/medicationListView"

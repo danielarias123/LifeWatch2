@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.app.Activity;
 import android.os.CountDownTimer;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import android.view.View.OnClickListener;
 import android.view.MenuItem;
@@ -22,11 +24,15 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
     Button cancEmergButton;
     Button callNowButton;
 
+    private DbHelper myDb = new DbHelper(EmergActivity.this);
+
 
     TextView countdown;
     private static final String FORMAT = "%02d";
     public String setTime = SettingsActivity.waitTime;
     CountDownTimer timer;
+
+
 
     long seconds = 6000;
     @Override
@@ -41,6 +47,8 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
         callNowButton.setOnClickListener(this);
 
         countdown=(TextView)findViewById(R.id.countdownTextView);
+
+
 
 
         if(setTime.equals("5 s")){
@@ -77,20 +85,32 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
 
             public void onFinish() {
                 countdown.setText("SENT");
-                String textPhoneNo = "9053997017";
+
                 String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
 
-                try {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(textPhoneNo, null, textSMS, null, null);
-                    Toast.makeText(getApplicationContext(), "Emergency SMS Sent!",
-                            Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),
-                            "SMS failed, please try again later!",
-                            Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
+                List<String> recipients = myDb.getAllNumbers();
+                for (String PhoneNo: recipients ) {
+                    if (!PhoneNo.equals("")) {
+                        try {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(PhoneNo, null, textSMS, null, null);
+                            Toast.makeText(getApplicationContext(), "Emergency SMS Sent to "+PhoneNo+"!",
+                                    Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(),
+                                    "SMS failed, please try again later!",
+                                    Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
                 }
+
+
+
+
             }
         }.start();
 
@@ -115,19 +135,27 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
                 timer.cancel();
                 countdown.setText("SENT");
 
-                String textPhoneNo = "9053997017";
+                
                 String textSMS = "** LifeWatch Automated Message ** Help! I have fallen and can't get up.";
 
-                try {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(textPhoneNo, null, textSMS, null, null);
-                    Toast.makeText(getApplicationContext(), "Emergency SMS Sent!",
-                            Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),
-                            "SMS failed, please try again later!",
-                            Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
+                List<String> recipients = myDb.getAllNumbers();
+                for (String PhoneNo: recipients ) {
+                    if (!PhoneNo.equals("")) {
+                        try {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(PhoneNo, null, textSMS, null, null);
+                            Toast.makeText(getApplicationContext(), "Emergency SMS Sent to "+PhoneNo+"!",
+                                    Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(),
+                                    "SMS failed, please try again later!",
+                                    Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
                 }
                 countdown.setFreezesText(true);
                 // Intent i = new Intent(MobileMainActivity.this, ContactsActivity.class);

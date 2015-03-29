@@ -124,19 +124,52 @@
         android:textSize="25sp"
          />
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:text="Back"
-        android:id="@+id/backtomed2Button"
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/intervalrateTextView"
+        android:layout_marginTop="60dp"
 
-        android:textColor="@color/alice_blue"
-        android:background="@color/gray"
-        android:textSize="25sp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="sans-serif-thin"
-        android:layout_below="@+id/intervalnumTextView"
-        android:layout_centerHorizontal="true"
-        />
+        android:stretchColumns="0,1,2"
+
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true">
+        <TableRow
+            android:layout_marginTop="0dp"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:text="Back"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/backtomed2Button"
+                android:textColor="@color/alice_blue"
+                android:textSize="25sp"
+                android:fontFamily="sans-serif-thin"
+                android:background="@color/gray"
+                android:layout_weight="1"
+
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif-thin"
+                android:text="Delete"
+                android:background="@color/boston_university_red"
+                android:id="@+id/deleteMedButton"
+                android:layout_weight="1"
+                android:textColor="@color/alice_blue"
+
+                android:textSize="25sp"
+                android:layout_marginLeft="20dp"
+
+                />
+
+        </TableRow>
+    </TableLayout>
+
+
 
 </RelativeLayout>

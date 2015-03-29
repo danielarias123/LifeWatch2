@@ -54,6 +54,11 @@
             android:name=".AboutAppActivity"
             android:label="@string/title_activity_about_app" >
         </activity>
+
+        <activity
+            android:name=".AndroidDatabaseManager"
+            android:label="@string/title_activity_about_app" >
+        </activity>
     </application>
 
 </manifest>

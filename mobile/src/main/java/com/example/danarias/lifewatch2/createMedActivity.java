@@ -1,5 +1,6 @@
 package com.example.danarias.lifewatch2;
 
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -176,7 +177,10 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
 
         SQLiteDatabase db = myDb.getWritableDatabase();
 
+        Integer count = getMedCount();
+
         ContentValues values = new ContentValues();
+        values.put("med_id", count+1);
         values.put("medname", medname);
         values.put("medquantity", medquantity);
         values.put("mednotes", mednotes);
@@ -193,6 +197,16 @@ public class createMedActivity extends ActionBarActivity implements OnClickListe
         }
         db.close();
 
+    }
+
+    public int getMedCount() {
+        SQLiteDatabase db = myDb.getWritableDatabase();
+        String countQuery = "SELECT  * FROM " + DbHelper.MEDICATION_TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int cnt = cursor.getCount();
+        cursor.close();
+        return cnt;
     }
 
 

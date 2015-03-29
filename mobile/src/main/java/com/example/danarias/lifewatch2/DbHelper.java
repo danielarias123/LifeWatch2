@@ -8,16 +8,18 @@ import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
+import java.sql.SQLException;
 
 
 public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "lifewatch.db";
-    private static final int DATABASE_VERSION = 23;
+    private static final int DATABASE_VERSION = 28;
     public static final String CONTACTS_TABLE_NAME = "Contacts";
     public static final String MEDICATION_TABLE_NAME = "Medication";
 
@@ -39,12 +41,12 @@ public class DbHelper extends SQLiteOpenHelper{
 
     private static final String LIFEWATCH_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + CONTACTS_TABLE_NAME + "(" +USER_ID
-                    +" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                    +" INTEGER PRIMARY KEY, "+
                     NAME_CONTACT + " TEXT NOT NULL, "+PHONE_CONTACT+ " TEXT NOT NULL, "+EMAIL_CONTACT+ " TEXT, "+ IF_EMERG_CONTACT+" TEXT);";
 
     private static final String MEDICATION_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + MEDICATION_TABLE_NAME + "(" +MED_ID
-                    +" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                    +" INTEGER PRIMARY KEY, "+
                     NAME_MED + " TEXT NOT NULL, "+QUANT_MED+ " TEXT NOT NULL, "+NOTES_MED+ " TEXT, "+INTERVAL_NUM+ " TEXT NOT NULL, "+INTERVAL+ " TEXT NOT NULL);";
 
     private SQLiteDatabase db;
@@ -76,7 +78,7 @@ public class DbHelper extends SQLiteOpenHelper{
         }
     }
 
-    public List<String> getAllContacts(){
+    public List<String> getAllContacts() {
         List<String> contacts = new ArrayList<String>();
 
         // Select All Query
@@ -98,8 +100,37 @@ public class DbHelper extends SQLiteOpenHelper{
         cursor.close();
         db.close();
 
-
         return contacts;
+    }
+
+
+
+        public List<String> getAllNumbers(){
+            List<String> recipients = new ArrayList<String>();
+
+            String selectQuery = "SELECT  * FROM " + CONTACTS_TABLE_NAME+ " WHERE ifEmergContact = ?" ;
+
+            SQLiteDatabase db = this.getReadableDatabase();
+
+
+            Cursor cursor = db.rawQuery(selectQuery, new String[] {"yes"});
+
+
+
+
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    recipients.add(cursor.getString(2));
+                } while (cursor.moveToNext());
+            }
+
+            // closing connection
+            cursor.close();
+            db.close();
+
+
+        return recipients;
     }
 
     public List<String> getAllMedication(){
@@ -300,12 +331,7 @@ public class DbHelper extends SQLiteOpenHelper{
         return result;
     }
 
-    public void deleteContact(int ids) {
-        // TODO Auto-generated method stub
-        SQLiteDatabase mydb = this.getWritableDatabase();
-        mydb.delete(MEDICATION_TABLE_NAME, USER_ID + " = " + ids, null);
-        mydb.close();
-    }
+
 
 
     public Cursor getAllRows() {
@@ -334,6 +360,51 @@ public class DbHelper extends SQLiteOpenHelper{
                 + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS "+ MEDICATION_TABLE_NAME);
         onCreate(db);
+
+
+    }
+
+    public ArrayList<Cursor> getData(String Query){
+        //get writable database
+        SQLiteDatabase sqlDB = this.getWritableDatabase();
+        String[] columns = new String[] { "mesage" };
+        //an array list of cursor to save two cursors one has results from the query
+        //other cursor stores error message if any errors are triggered
+        ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
+        MatrixCursor Cursor2= new MatrixCursor(columns);
+        alc.add(null);
+        alc.add(null);
+
+
+        try{
+            String maxQuery = Query ;
+            //execute the query results will be save in Cursor c
+            Cursor c = sqlDB.rawQuery(maxQuery, null);
+
+
+            //add value to cursor2
+            Cursor2.addRow(new Object[] { "Success" });
+
+            alc.set(1,Cursor2);
+            if (null != c && c.getCount() > 0) {
+
+
+                alc.set(0,c);
+                c.moveToFirst();
+
+                return alc ;
+            }
+            return alc;
+
+        } catch(Exception ex){
+
+            Log.d("printing exception", ex.getMessage());
+
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[] { ""+ex.getMessage() });
+            alc.set(1,Cursor2);
+            return alc;
+        }
 
 
     }

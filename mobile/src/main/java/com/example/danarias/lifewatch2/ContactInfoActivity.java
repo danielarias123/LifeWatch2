@@ -110,13 +110,13 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
             case R.id.deleteContactButton:
                 AlertDialog.Builder ad = new AlertDialog.Builder(ContactInfoActivity.this);
 
-                ad.setMessage("Delete this contact?");
+                ad.setMessage("Delete this Contact?");
                 ad.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Delete of record from Database and List view.
-                        //deleteContact(position);
+                        deleteContact(position);
                         Toast.makeText(getApplicationContext(),"Contact Deleted",Toast.LENGTH_SHORT).show();
                         Intent i2 = new Intent(ContactInfoActivity.this, ContactsActivity.class);
                         startActivity(i2);
@@ -161,6 +161,10 @@ public class ContactInfoActivity extends ActionBarActivity implements OnClickLis
     public void deleteContact(Integer position){
         SQLiteDatabase db = mydatabase.getWritableDatabase();
         db.delete(DbHelper.CONTACTS_TABLE_NAME, "_id " + "=" + (position+1), null);
+        String strSQL = "UPDATE Contacts SET _id = _id-1 WHERE _id > "+ (position+1);
+
+        db.execSQL(strSQL);
+
         db.close();
     }
 

@@ -1,5 +1,7 @@
 package com.example.danarias.lifewatch2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,6 +23,8 @@ import android.database.sqlite.SQLiteDatabase;
 public class MedInfoActivity extends ActionBarActivity implements OnClickListener {
 
     Button backtomedication2Button;
+    Button deleteMedButton;
+
     DbHelper mydatabase = new DbHelper(this);
 
     int position;
@@ -47,6 +51,9 @@ public class MedInfoActivity extends ActionBarActivity implements OnClickListene
 
         backtomedication2Button = (Button) findViewById(R.id.backtomed2Button);
         backtomedication2Button.setOnClickListener(this);
+
+        deleteMedButton = (Button) findViewById(R.id.deleteMedButton);
+        deleteMedButton.setOnClickListener(this);
 
         TextView mednameTextView = (TextView) findViewById(R.id.medInfoTextView);
         mednameTextView.setText(medname);
@@ -76,10 +83,50 @@ public class MedInfoActivity extends ActionBarActivity implements OnClickListene
                 finish();
                 break;
 
+            case R.id.deleteMedButton:
+                AlertDialog.Builder ad = new AlertDialog.Builder(MedInfoActivity.this);
+
+                ad.setMessage("Delete this Medication?");
+                ad.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Delete of record from Database and List view.
+                        deleteMed(position);
+                        Toast.makeText(getApplicationContext(),"Contact Deleted",Toast.LENGTH_SHORT).show();
+                        Intent i2 = new Intent(MedInfoActivity.this, MedReminderActivity.class);
+                        startActivity(i2);
+                        finish();
+
+                    }
+                });
+                ad.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+
+
+                break;
+
 
 
 
         }
+    }
+
+    public void deleteMed(Integer position){
+        SQLiteDatabase db = mydatabase.getWritableDatabase();
+        db.delete(DbHelper.MEDICATION_TABLE_NAME, "med_id " + "=" + (position+1), null);
+        String strSQL = "UPDATE Medication SET med_id = med_id-1 WHERE med_id > "+ (position+1);
+
+        db.execSQL(strSQL);
+
+        db.close();
     }
 
 
