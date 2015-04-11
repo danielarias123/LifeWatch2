@@ -43,7 +43,7 @@
 
             android:layout_centerHorizontal="true"
             android:id="@+id/tablerow1"
-            android:background="#bfd0ffed"
+            android:background="#ffce35"
             android:baselineAligned="false">
 
 
@@ -74,7 +74,7 @@
             android:layout_height="100dp"
             android:id="@+id/tablerow2"
             android:layout_marginTop="20dp"
-            android:background="#bfd0ffed">
+            android:background="#ffce35">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,6 +97,42 @@
                 android:id="@+id/SmartWatchFeaturesCheckBox"
                 android:checked="@color/red"
                 android:layout_column="2" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/tablerow3"
+            android:layout_marginTop="20dp"
+            android:background="#ffce35">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Fall Detection"
+                android:fontFamily="sans-serif-thin"
+                android:id="@+id/configureTextView"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical"
+                />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:fontFamily="sans-serif-thin"
+                android:layout_marginTop="5dp"
+                android:textSize="20dp"
+                android:background="@color/gray"
+                android:textColor="@color/alice_blue"
+                android:id="@+id/testButton"
+                android:layout_marginLeft="20dp"
+                android:layout_column="2" />
+
 
         </TableRow>
 

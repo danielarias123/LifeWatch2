@@ -3,6 +3,7 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/alice_blue"
     android:paddingBottom="0dp"
     tools:context="com.example.danarias.lifewatch2.ContactInfoActivity">
 
@@ -76,7 +77,7 @@
 
     <EditText
         android:fontFamily="sans-serif-thin"
-        android:background="#bfd0ffed"
+        android:background="#ffce35"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"

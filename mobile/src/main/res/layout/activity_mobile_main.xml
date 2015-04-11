@@ -38,7 +38,7 @@
         android:id="@+id/emergButton"
         android:textColor="@color/alice_blue"
         android:textSize="25sp"
-        android:background="@color/boston_university_red"
+        android:background="@drawable/buttonshape"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
         android:layout_below="@+id/titleTextView"

@@ -23,6 +23,7 @@ import android.widget.CheckBox;
 public class SettingsActivity extends ActionBarActivity implements OnClickListener, OnItemSelectedListener{
 
     Button backButton;
+    Button testButton;
 
 
 
@@ -37,6 +38,10 @@ public class SettingsActivity extends ActionBarActivity implements OnClickListen
 
         backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
+
+
+        testButton = (Button) findViewById(R.id.testButton);
+        testButton.setOnClickListener(this);
 
         final CheckBox smartWatchFeatcheckBox = (CheckBox) findViewById(R.id.SmartWatchFeaturesCheckBox);
         if (smartWatchFeatcheckBox.isChecked()) {
@@ -61,6 +66,12 @@ public class SettingsActivity extends ActionBarActivity implements OnClickListen
             case R.id.backButton:
                 Intent intent = new Intent(SettingsActivity.this, MobileMainActivity.class);
                 startActivity(intent);
+                finish();
+                break;
+
+            case R.id.testButton:
+                Intent intent2 = new Intent(SettingsActivity.this, TestActivity.class);
+                startActivity(intent2);
                 finish();
                 break;
         }

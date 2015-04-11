@@ -54,10 +54,13 @@
             android:name=".AboutAppActivity"
             android:label="@string/title_activity_about_app" >
         </activity>
-
         <activity
             android:name=".AndroidDatabaseManager"
             android:label="@string/title_activity_about_app" >
+        </activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 

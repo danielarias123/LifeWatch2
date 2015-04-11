@@ -4,6 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/alice_blue"
     tools:context="com.example.danarias.lifewatch2.createMedActivity">
 
     <ImageView
@@ -57,7 +58,7 @@
             android:inputType="text" />
         <EditText
             android:fontFamily="sans-serif-thin"
-            android:background="#bfd0ffed"
+            android:background="#ffce35"
             android:layout_width="200dp"
             android:layout_marginLeft="20dp"
             android:layout_height="50dp"
@@ -141,7 +142,7 @@
                 android:layout_height="150dp"
                 android:id="@+id/numPicker"
                 android:gravity="center"
-                android:background="#bfd0ffed"
+                android:background="#ffce35"
                 android:layout_weight="1"/>
 
             <NumberPicker
@@ -149,7 +150,7 @@
                 android:layout_height="150dp"
                 android:id="@+id/intervalPicker"
                 android:gravity="right"
-                android:background="#bfd0ffed"
+                android:background="#ffce35"
                 android:layout_weight="1"/>
         </TableRow>
 
