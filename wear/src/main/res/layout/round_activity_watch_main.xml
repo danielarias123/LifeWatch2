@@ -8,14 +8,60 @@
     android:background="@color/white"
     tools:context=".WatchMainActivity"
     tools:deviceIds="wear_round"
-    >
+    android:id="@+id/">
 
-    <TextView android:id="@+id/text" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" android:text="LifeWatch"
+    <TextView android:id="@+id/Titletext" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LifeWatch"
         android:fontFamily="sans-serif-thin"
         android:textSize="32sp"
         android:textColor="@color/boston_university_red"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <TextView android:id="@+id/Contactingtext" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="contacting in ..."
+        android:fontFamily="sans-serif-thin"
+        android:textSize="20sp"
+        android:textColor="@color/grey"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="10"
+        android:id="@+id/watchcountdownTextView"
+
+        android:textSize="35sp"
+        android:textColor="@color/boston_university_red"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/Contactingtext"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/cancImageView"
+
+        android:layout_marginTop="10dp"
+        android:src="@drawable/cancel"
+        android:layout_below="@+id/watchcountdownTextView"
+        android:layout_alignStart="@+id/Contactingtext" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/nowImageView"
+
+        android:src="@drawable/ambulance_icon"
+        android:layout_alignTop="@+id/cancImageView"
+        android:layout_alignEnd="@+id/Contactingtext" />
+
 
 </RelativeLayout>

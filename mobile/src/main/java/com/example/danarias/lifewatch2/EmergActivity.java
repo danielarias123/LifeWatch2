@@ -1,44 +1,94 @@
 package com.example.danarias.lifewatch2;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.app.Activity;
 import android.os.CountDownTimer;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
+
 import android.view.View.OnClickListener;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 import android.telephony.SmsManager;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.DataItem;
+import com.google.android.gms.wearable.DataMap;
+import com.google.android.gms.wearable.DataMapItem;
+import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.NodeApi;
+import com.google.android.gms.wearable.PutDataMapRequest;
+import com.google.android.gms.wearable.PutDataRequest;
+import com.google.android.gms.wearable.Wearable;
+import com.google.android.gms.wearable.Node;
+
+import android.util.Log;
 
 
-public class EmergActivity extends ActionBarActivity implements OnClickListener{
+
+
+public class EmergActivity extends ActionBarActivity implements OnClickListener, GoogleApiClient.ConnectionCallbacks{
 
     Button cancEmergButton;
     Button callNowButton;
 
+    private static final String COUNT_KEY = "com.example.key.count";
+    private int count = 0;
+
+
+
     private DbHelper myDb = new DbHelper(EmergActivity.this);
 
+    private static final String TAG = "PhoneActivity";
+    private GoogleApiClient mApiClient;
 
+    private ArrayAdapter<String> mAdapter;
     TextView countdown;
     private static final String FORMAT = "%02d";
     public String setTime = SettingsActivity.waitTime;
     CountDownTimer timer;
 
-
+    private static final String START_ACTIVITY = "/EmergActivity";
 
     long seconds = 6000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emerg);
+
+
+
+
+
+
+
+
+
+
+
+
+
+        initGoogleApiClient();
+
 
         cancEmergButton = (Button) findViewById(R.id.cancEmergButton);
         cancEmergButton.setOnClickListener(this);
@@ -169,6 +219,57 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener{
                 //     case R.id.settingsButton:
         }
     }
+
+    private void initGoogleApiClient() {
+        mApiClient = new GoogleApiClient.Builder( this )
+                .addApi( Wearable.API )
+                .build();
+
+        mApiClient.connect();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mApiClient.disconnect();
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+        emergencySend(START_ACTIVITY, "");
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+
+
+    private void emergencySend(final String path, final String text ) {
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes( mApiClient ).await();
+                for(Node node : nodes.getNodes()) {
+                    MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
+                            mApiClient, node.getId(), path, text.getBytes() ).await();
+
+                }
+
+
+            }
+        }).start();
+    }
+
+
+
+
+
+
+
+
 
 
 
