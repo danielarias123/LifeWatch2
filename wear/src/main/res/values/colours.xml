@@ -2,5 +2,6 @@
 <resources>
     
     <color name="white_background">#FFFFFF</color>
+    <color name="alice_blue">#F0F8FF</color>
     <color name="boston_university_red">#CC0000</color>
 </resources>

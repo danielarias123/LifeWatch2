@@ -240,6 +240,8 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener,
         emergencySend(START_ACTIVITY, "");
     }
 
+
+
     @Override
     public void onConnectionSuspended(int i) {
 
@@ -255,6 +257,7 @@ public class EmergActivity extends ActionBarActivity implements OnClickListener,
                 for(Node node : nodes.getNodes()) {
                     MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
                             mApiClient, node.getId(), path, text.getBytes() ).await();
+
 
                 }
 
